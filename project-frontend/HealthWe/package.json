@@ -1,0 +1,26 @@
+{
+  "main": "node_modules/expo/AppEntry.js",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "eject": "expo eject",
+    "test": "node ./node_modules/jest/bin/jest.js --watchAll"
+  },
+  "jest": {
+    "preset": "jest-expo"
+  },
+  "dependencies": {
+    "@expo/samples": "2.1.1",
+    "@unimodules/core": "^1.0.0",
+    "expo": "^32.0.0",
+    "expo-facebook": "^4.0.0",
+    "react": "16.5.0",
+    "react-native": "^0.55.4"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.0.0",
+    "babel-core": "^7.0.0-bridge.0"
+  },
+  "private": true
+}

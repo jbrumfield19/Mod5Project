@@ -1,0 +1,7 @@
+project-frontend/HealthWe/node_modules/**/*
+project-frontend/HealthWe/.expo/*
+project-frontend/HealthWe/npm-debug.*
+*.jks
+*.p12
+*.key
+*.mobileprovision
