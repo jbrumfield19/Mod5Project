@@ -18,4 +18,4 @@ classifier.train()
 
 console.log(classifier.classify(''))
 // console.log(pcomments.flat())
-// /console.log(analyzer.getSentiment(tokenizer.tokenize('good')))
+// console.log(analyzer.getSentiment(tokenizer.tokenize('wubalubadubdub')))
