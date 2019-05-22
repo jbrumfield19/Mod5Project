@@ -7,96 +7,98 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Button,
+  Alert
 } from 'react-native';
-import { WebBrowser } from 'expo';
-
+import {withNavigation} from 'react-navigation'
+import  { Linking, WebBrowser } from 'expo';
+import {tumblr}from 'react-native-simple-auth'
 import { MonoText } from '../components/StyledText';
+import{AuthSession} from 'expo'
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
-    header: null,
+    title:'HealthWe',
   };
-
-  render() {
-    return (
-      <View style={styles.container}>
-        <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-          <View style={styles.welcomeContainer}>
-            <Image
-              source={
-                __DEV__
-                  ? require('../assets/images/robot-dev.png')
-                  : require('../assets/images/robot-prod.png')
-              }
-              style={styles.welcomeImage}
-            />
-          </View>
-
-          <View style={styles.getStartedContainer}>
-            {this._maybeRenderDevelopmentModeWarning()}
-
-            <Text style={styles.getStartedText}>Get started by opening</Text>
-
-            <View style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
-              <MonoText style={styles.codeHighlightText}>screens/HomeScreen.js</MonoText>
-            </View>
-
-            <Text style={styles.getStartedText}>
-              Change this text and your app will automatically reload.
-            </Text>
-          </View>
-
-          <View style={styles.helpContainer}>
-            <TouchableOpacity onPress={this._handleHelpPress} style={styles.helpLink}>
-              <Text style={styles.helpLinkText}>Help, it didn’t automatically reload!</Text>
-            </TouchableOpacity>
-          </View>
-        </ScrollView>
-
-        <View style={styles.tabBarInfoContainer}>
-          <Text style={styles.tabBarInfoText}>This is a tab bar. You can edit it in:</Text>
-
-          <View style={[styles.codeHighlightContainer, styles.navigationFilename]}>
-            <MonoText style={styles.codeHighlightText}>navigation/MainTabNavigator.js</MonoText>
-          </View>
-        </View>
-      </View>
-    );
-  }
-
-  _maybeRenderDevelopmentModeWarning() {
-    if (__DEV__) {
-      const learnMoreButton = (
-        <Text onPress={this._handleLearnMorePress} style={styles.helpLinkText}>
-          Learn more
-        </Text>
-      );
-
-      return (
-        <Text style={styles.developmentModeText}>
-          Development mode is enabled, your app will be slower but you can use useful development
-          tools. {learnMoreButton}
-        </Text>
-      );
-    } else {
-      return (
-        <Text style={styles.developmentModeText}>
-          You are not in development mode, your app will run at full speed.
-        </Text>
-      );
-    }
-  }
-
-  _handleLearnMorePress = () => {
-    WebBrowser.openBrowserAsync('https://docs.expo.io/versions/latest/guides/development-mode');
-  };
-
-  _handleHelpPress = () => {
-    WebBrowser.openBrowserAsync(
-      'https://docs.expo.io/versions/latest/guides/up-and-running.html#can-t-see-your-changes'
-    );
-  };
+  state={
+    fbInfo:[],
+    fbName:''
 }
+logIn = async () => {
+  try {
+    const {navigate}=this.props.navigation
+
+    // simpleAuthProviders['tumblr'](opts)
+    //   .then((info) => {
+    //     _this.setState({
+    //         loading: false
+    //     });
+    //     _this.props.navigator.push({
+    //       title: provider,
+    //       provider,
+    //       info,
+    //       index: 1
+    //     });
+    //   })
+    //   .catch((error) => {
+    //     _this.setState({
+    //         loading: false
+    //     });
+    //     Alert.alert(
+    //       'Authorize Error',
+    //       error.message
+    //     );
+    //   });
+
+    // console.log("im sorry what")
+    // let redirectUrl = AuthSession.getRedirectUrl();
+    // let result = await AuthSession.startAsync({
+    //   authUrl:
+    //     `https://www.tumblr.com/oauth/access_token` +
+    //     `&client_id=fMSKqonfriPsME1WQ7mwDi0Qqq1hYXv6I7uXmbcnG8hrixqExd` +
+    //     `&redirect_uri=${encodeURIComponent(redirectUrl)}`,
+    // });
+    // console.log(result)
+    const result = await tumblr({
+      appId: 'fMSKqonfriPsME1WQ7mwDi0Qqq1hYXv6I7uXmbcnG8hrixqExd',
+      appSecret: 'NGt2IifxB33JaCQ7KuaEiYoA3lqXh4mQ4bVeyO5JqWkI59RZec',
+      callback: Linking.makeUrl('authorization'),
+    });
+    console.log(result.credentials) // oauth_token, oauth_token_secret
+    try{
+      // fetch(`api.tumblr.com/v2/user?api_key=fMSKqonfriPsME1WQ7mwDi0Qqq1hYXv6I7uXmbcnG8hrixqExd`)
+      //   .catch(console.log)
+    } catch(err){
+      console.log(err)
+    }
+    // if (type === 'success') {
+    //   // Get the user's name using Facebook's Graph API
+    //   const response = 
+    //   console.log(response.json())
+    //   // const {name, posts} = await response.json();
+    //    Alert.alert('Logged in!', `Hi ${name}!`);
+    //   this.props.navigation.navigate('Feed',)
+     
+    // } else {
+    //   // type === 'cancel'
+    // }
+  } catch (message ) {
+    console.log(message);
+  }
+}
+render() {
+
+// console.log(this.state)
+ return (
+   <View style={styles.container}>
+     <Text style={styles.label}>Welcome to HealthWe!</Text>
+     <Button onPress={this.logIn} title='link your tumblr'></Button>
+         
+   </View>
+ );
+}
+}
+
 
 const styles = StyleSheet.create({
   container: {

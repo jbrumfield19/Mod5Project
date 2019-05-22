@@ -15,7 +15,9 @@
     "expo": "^32.0.0",
     "react": "16.5.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
-    "react-navigation": "^3.0.9"
+    "react-native-simple-auth": "^2.4.0",
+    "react-navigation": "^3.11.0",
+    "tumblr.js": "^2.0.2"
   },
   "devDependencies": {
     "babel-preset-expo": "^5.0.0",
