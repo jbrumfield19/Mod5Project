@@ -4,9 +4,10 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-
+var indexRouter = require('./public/src/routes/index');
+var usersRouter = require('./public/src/routes/users');
+var tumblrRouter = require('./public/src/routes/tumblr')
+var bodyParser = require('body-parser')
 var app = express();
 
 // view engine setup
@@ -18,15 +19,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(bodyParser.json())
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/tumblr', tumblrRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
 });
-
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
