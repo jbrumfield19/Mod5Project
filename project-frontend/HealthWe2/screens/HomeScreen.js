@@ -28,59 +28,29 @@ logIn = async () => {
   try {
     const {navigate}=this.props.navigation
 
-    // simpleAuthProviders['tumblr'](opts)
-    //   .then((info) => {
-    //     _this.setState({
-    //         loading: false
-    //     });
-    //     _this.props.navigator.push({
-    //       title: provider,
-    //       provider,
-    //       info,
-    //       index: 1
-    //     });
-    //   })
-    //   .catch((error) => {
-    //     _this.setState({
-    //         loading: false
-    //     });
-    //     Alert.alert(
-    //       'Authorize Error',
-    //       error.message
-    //     );
-    //   });
-
-    // console.log("im sorry what")
-    // let redirectUrl = AuthSession.getRedirectUrl();
-    // let result = await AuthSession.startAsync({
-    //   authUrl:
-    //     `https://www.tumblr.com/oauth/access_token` +
-    //     `&client_id=fMSKqonfriPsME1WQ7mwDi0Qqq1hYXv6I7uXmbcnG8hrixqExd` +
-    //     `&redirect_uri=${encodeURIComponent(redirectUrl)}`,
-    // });
-    // console.log(result)
     const result = await tumblr({
       appId: 'fMSKqonfriPsME1WQ7mwDi0Qqq1hYXv6I7uXmbcnG8hrixqExd',
       appSecret: 'NGt2IifxB33JaCQ7KuaEiYoA3lqXh4mQ4bVeyO5JqWkI59RZec',
       callback: Linking.makeUrl('authorization'),
     });
-    console.log(result.credentials) // oauth_token, oauth_token_secret
-    try{
-      // fetch(`api.tumblr.com/v2/user?api_key=fMSKqonfriPsME1WQ7mwDi0Qqq1hYXv6I7uXmbcnG8hrixqExd`)
-      //   .catch(console.log)
-    } catch(err){
-      console.log(err)
-    }
-    // if (type === 'success') {
-    //   // Get the user's name using Facebook's Graph API
-    //   const response = 
-    //   console.log(response.json())
-    //   // const {name, posts} = await response.json();
-    //    Alert.alert('Logged in!', `Hi ${name}!`);
+    await this.props.navigation.navigate('Feed')
+    // console.log(result.credentials) // oauth_token, oauth_token_secret
+    // try{
+    //   // fetch(`api.tumblr.com/v2/user?api_key=fMSKqonfriPsME1WQ7mwDi0Qqq1hYXv6I7uXmbcnG8hrixqExd`)
+    //   //   .catch(console.log)
+    // } catch(err){
+    //   console.log(err)
+    // }
+    // if (result.type === 'success') {
+    // //   // Get the user's name using Facebook's Graph API
+    // //   const response = 
+    // //   console.log(response.json())
+    // //   // const {name, posts} = await response.json();
+    // //    Alert.alert('Logged in!', `Hi ${name}!`);
     //   this.props.navigation.navigate('Feed',)
      
     // } else {
-    //   // type === 'cancel'
+    //  // type === 'cancel'
     // }
   } catch (message ) {
     console.log(message);
