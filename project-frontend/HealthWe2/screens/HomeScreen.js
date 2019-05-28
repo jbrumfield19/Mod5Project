@@ -6,10 +6,10 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  View,
   Button,
   Alert
 } from 'react-native';
+import {View, ImageBackground} from '@shoutem/ui'
 import {withNavigation} from 'react-navigation'
 import  { Linking, WebBrowser } from 'expo';
 import {tumblr}from 'react-native-simple-auth'
@@ -28,12 +28,12 @@ logIn = async () => {
   try {
     const {navigate}=this.props.navigation
 
-    const result = await tumblr({
+    const promise = tumblr({
       appId: 'fMSKqonfriPsME1WQ7mwDi0Qqq1hYXv6I7uXmbcnG8hrixqExd',
       appSecret: 'NGt2IifxB33JaCQ7KuaEiYoA3lqXh4mQ4bVeyO5JqWkI59RZec',
       callback: Linking.makeUrl('authorization'),
     });
-    await this.props.navigation.navigate('Feed')
+    navigate('Feed', promise)
     // console.log(result.credentials) // oauth_token, oauth_token_secret
     // try{
     //   // fetch(`api.tumblr.com/v2/user?api_key=fMSKqonfriPsME1WQ7mwDi0Qqq1hYXv6I7uXmbcnG8hrixqExd`)
@@ -60,11 +60,14 @@ render() {
 
 // console.log(this.state)
  return (
-   <View style={styles.container}>
+<ImageBackground source={{uri:'https://i.pinimg.com/originals/4a/4f/db/4a4fdbafb9fcf7bb691ac7216f26384d.jpg'}} style={styles.container}>
+    
+<View>
      <Text style={styles.label}>Welcome to HealthWe!</Text>
      <Button onPress={this.logIn} title='link your tumblr'></Button>
          
    </View>
+</ImageBackground>
  );
 }
 }
@@ -73,7 +76,7 @@ render() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor:'#ffc0cb',
   },
   developmentModeText: {
     marginBottom: 20,
@@ -81,6 +84,13 @@ const styles = StyleSheet.create({
     fontSize: 14,
     lineHeight: 19,
     textAlign: 'center',
+  },
+  button:{
+    
+  },
+  label:{
+    fontSize:35
+
   },
   contentContainer: {
     paddingTop: 30,
