@@ -15,7 +15,7 @@ import FriendCard from '../PageComponents/FriendCard'
 export default class FeedScreen extends React.Component{
     state={friendInfo:[]}
     componentDidMount(){
-      fetch('http://10.185.4.71:3000/tumblr')
+      fetch('http://10.185.0.255:3000/tumblr')
         .then(res => res.json())
         .then(friendInfo=> this.setState({friendInfo:friendInfo}))
         
@@ -27,11 +27,13 @@ export default class FeedScreen extends React.Component{
 const styles = StyleSheet.create({
     container: {
       flex: 1,
+      width:'100%',
+      height:'100%'
     //   backgroundColor: '#FEC1F2',
     },
   }); 
      return(
-    <ImageBackground source={{uri:'https://i.pinimg.com/originals/4a/4f/db/4a4fdbafb9fcf7bb691ac7216f26384d.jpg'}} style={styles.container}>
+    <ImageBackground source={{uri:'https://media2.giphy.com/media/3o7TKHijxCRJS3KOHe/200w.webp?cid=790b76115cef372036624c4951267d06&rid=200w.webp'}} style={styles.container}>
        <ScrollView >
        {this.state.friendInfo.map(info=><FriendCard {...info}/>)}
 

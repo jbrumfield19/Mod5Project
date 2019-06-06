@@ -3,13 +3,14 @@ import {
   Image,
   Platform,
   ScrollView,
+  View,
+  ImageBackground,
   StyleSheet,
   Text,
   TouchableOpacity,
   Button,
   Alert
 } from 'react-native';
-import {View, ImageBackground} from '@shoutem/ui'
 import {withNavigation} from 'react-navigation'
 import  { Linking, WebBrowser } from 'expo';
 import {tumblr}from 'react-native-simple-auth'
@@ -17,9 +18,9 @@ import { MonoText } from '../components/StyledText';
 import{AuthSession} from 'expo'
 
 export default class HomeScreen extends React.Component {
-  static navigationOptions = {
-    title:'HealthWe',
-  };
+  // static navigationOptions = {
+  //   title:'HealthWe',
+  // };
   state={
     fbInfo:[],
     fbName:''
@@ -60,11 +61,11 @@ render() {
 
 // console.log(this.state)
  return (
-<ImageBackground source={{uri:'https://i.pinimg.com/originals/4a/4f/db/4a4fdbafb9fcf7bb691ac7216f26384d.jpg'}} style={styles.container}>
+<ImageBackground source={{uri:'https://media0.giphy.com/media/3oKIPeK7hRcDBwVFJu/200w.webp?cid=790b76115ceeb24935316e436fa4e9ec&rid=200w.webp'}} style={styles.container}>
     
 <View>
      <Text style={styles.label}>Welcome to HealthWe!</Text>
-     <Button onPress={this.logIn} title='link your tumblr'></Button>
+     <Button style={styles.button}onPress={this.logIn} title='link your tumblr'></Button>
          
    </View>
 </ImageBackground>
@@ -85,12 +86,9 @@ const styles = StyleSheet.create({
     lineHeight: 19,
     textAlign: 'center',
   },
-  button:{
-    
-  },
   label:{
-    fontSize:35
-
+    fontSize:35,
+     color:'#ffefd5'
   },
   contentContainer: {
     paddingTop: 30,

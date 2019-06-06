@@ -7,6 +7,8 @@ import AppNavigator from './navigation/AppNavigator';
 export default class App extends React.Component {
   state = {
     isLoadingComplete: false,
+
+
   };
 
   render() {
@@ -21,7 +23,7 @@ export default class App extends React.Component {
     } else {
       return (
           <View style={styles.container}>
-          {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
+          {Platform.OS === 'ios'}
           <AppNavigator />
         </View>
         
@@ -54,6 +56,7 @@ export default class App extends React.Component {
   _handleFinishLoading = () => {
     this.setState({ isLoadingComplete: true });
   };
+  
 }
 
 const styles = StyleSheet.create({
